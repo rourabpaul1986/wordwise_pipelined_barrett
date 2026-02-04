@@ -1,8 +1,8 @@
-# Barrett Reduction Pipeline for Modular Arithmetic
+# Barrett Modular Multiplication
 
 ## Overview
 
-This repository contains a **pipelined hardware implementation of Barrett Reduction** for efficient modular arithmetic on FPGAs. Barrett reduction is commonly used in **modular multiplication and exponentiation**, and is a core arithmetic primitive in **lattice-based Post-Quantum Cryptography (PQC)** schemes such as Kyber and Dilithium.
+This repository contains a **pipelined hardware implementation of Barrett Modular Multiplication** for efficient modular arithmetic on FPGAs. Barrett Modular Multiplication is commonly used in **modular multiplication and exponentiation**, and is a core arithmetic primitive in **lattice-based Post-Quantum Cryptography (PQC)** schemes such as Kyber and Dilithium.
 
 The design focuses on **high throughput**, **deterministic latency**, and **hardware efficiency**, making it suitable for cryptographic accelerators and fault-analysis studies.
 
@@ -10,7 +10,7 @@ The design focuses on **high throughput**, **deterministic latency**, and **hard
 
 ## Key Features
 
-- Fully **pipelined Barrett reduction architecture**
+- Fully **pipelined Barrett Modular Multiplication architecture**
 - Parameterizable modulus and operand bit-width
 - Suitable for **NTT, modular multiplication, and modular exponentiation**
 - Synthesizable RTL design
@@ -19,9 +19,9 @@ The design focuses on **high throughput**, **deterministic latency**, and **hard
 
 ---
 
-## Barrett Reduction Algorithm
+## Barrett Modular Multiplication Algorithm
 
-For an integer `x` and modulus `n`, Barrett reduction computes:
+For an integer `a` and `b` and modulus `n`, Barrett reduction computes:
 
 
 where:
