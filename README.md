@@ -23,3 +23,51 @@ The design focuses on **high throughput**, **deterministic latency**, and **hard
 
 For an integer `x` and modulus `n`, Barrett reduction computes:
 
+
+where:
+- `μ = ⌊2^k / n⌋`
+- `k` is chosen based on operand size
+
+This avoids expensive division and enables efficient hardware implementation.
+
+---
+
+## Pipeline Architecture
+
+The design is organized into multiple pipeline stages:
+
+1. Partial multiplication
+2. Shift and truncation
+3. Intermediate subtraction
+4. Final correction stage
+
+Each stage is fully registered to maximize clock frequency.
+
+---
+
+## Resource Utilization
+
+The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**.
+
+| Parameter | LUTs | Slices |
+|----------|------|--------|
+| Barrett Pipeline (Baseline) | XXX | XXX |
+| With Fault Detection | XXX | XXX |
+| With Full Pipelining | XXX | XXX |
+
+> **Note:** Replace `XXX` with post-synthesis values from Vivado.
+
+---
+
+## Performance Summary
+
+| Metric | Value |
+|------|------|
+| Clock Frequency | XXX MHz |
+| Latency | XXX cycles |
+| Throughput | 1 result / cycle (after pipeline fill) |
+
+---
+
+## Directory Structure
+
