@@ -50,10 +50,12 @@ Each stage is fully registered to maximize clock frequency.
 The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**.
 
 
-| l , w | LUTs | FF | Slice | DSP | Power (mw) | CC | CP(ns)|
-|-------|------|----|-------|-----|------------| ---|-------|
-| 12, 4 | 125  | 77 |   47  |  2  |  109       | 9  |  9.69 |
-| 12, 6 | 132  | 73 |   57  |  2  |  111       | 4  |  9.28 |
+|Application |      l,w,q     | LUTs | FF | Slice | DSP | Power (mw) | CC | CP(ns)| 
+|------------|----------------|------|----|-------|-----|------------| ---|-------|
+|   Kyber    | 12, 4, 3329    | 125  | 77 |   47  |  2  |  109       | 9  |  9.69 |
+|            | 12, 6, 3329    | 132  | 73 |   57  |  2  |  111       | 4  |  9.28 |
+|  Dilithium | 24, 4, 8380417 | 125  | 77 |   47  |  2  |  109       | 9  |  9.69 |
+|  Dilithium | 24, 4, 8380417 | 125  | 77 |   47  |  2  |  109       | 9  |  9.69 |
 
 > **Note:** Replace `XXX` with post-synthesis values from Vivado.
 
