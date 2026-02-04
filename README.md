@@ -49,6 +49,13 @@ Each stage is fully registered to maximize clock frequency.
 
 The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**.
 
+
+| l , w | LUTs | FF | Slice | DSP |
+|-------|------|----|-------|-----|
+| 12, 4 | 125  | 77 |   47  |  2  |
+
+> **Note:** Replace `XXX` with post-synthesis values from Vivado.
+
 | Parameter | LUTs | Slices |
 |----------|------|--------|
 | Barrett Pipeline (Baseline) | XXX | XXX |
