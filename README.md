@@ -53,6 +53,7 @@ The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**
 | l , w | LUTs | FF | Slice | DSP | Power (mw) | CC | CP(ns)|
 |-------|------|----|-------|-----|------------| ---|-------|
 | 12, 4 | 125  | 77 |   47  |  2  |  109       | 9  |  9.69 |
+| 12, 6 | 125  | 77 |   47  |  2  |  109       | 9  |  9.69 |
 
 > **Note:** Replace `XXX` with post-synthesis values from Vivado.
 
