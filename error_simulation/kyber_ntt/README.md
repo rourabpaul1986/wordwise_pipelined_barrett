@@ -3,8 +3,11 @@
 The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**.
 
 
-|Application |      l,w,q     | # of loop |# of no reduction| # of 1st reduction| # of 2nd reduction | # of both reduction |
-|------------|----------------|-----------|-----------------|-------------------|--------------------|---------------------|
-| Kyber NTT  | 12, 4, 3329                |
+|Kyber NTT (12, 4, 3329)|  # of loop |# of no reduction| # of 1st reduction| # of 2nd reduction | # of both reduction |
+|-----------------------|------------|-----------------|-------------------|--------------------|---------------------|
+|    min                |            |      74.446     |       0.282       |        22.721      |        0.000        |
+|    max                |   1024     |      76.600     |       0.792       |        24.913      |        0.151        |
+|    mean               |            |      75.655     |       0.519       |        23.788      |        0.036        |
+|    sd                 |            |      0.282      |       0.071       |        0.278       |        0.019        |
 
 
