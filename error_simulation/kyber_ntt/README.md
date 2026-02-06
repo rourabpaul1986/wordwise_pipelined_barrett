@@ -1,6 +1,6 @@
 ## Kyber NTT
 
-The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**.
+The design was simulated for **10,000** Kyber NTT Run. The total NTT Barrett iteration for 10,000 Kyber is **1,024x10,000**
 
 
 |Kyber NTT (12, 4, 3329)|  # of loop |# of no reduction| # of 1st reduction| # of 2nd reduction | # of both reduction |
