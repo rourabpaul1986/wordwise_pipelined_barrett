@@ -103,4 +103,5 @@ def kyber_xof_12bit(seed: bytes, N: int, Q):
 |# faulty loop| faulty bit | place of fault| type of fault | No reduction (%) |1st reduction (%) |2nd reduction (%) | Both reductions (%) |
 |--|--|--|--|--|--|--|--|
 |1024|1|c|random|55.79, 58.55, 57.21, 0.35|2.35, 3.63, 2.98, 0.17|38.06, 41.01, 39.46, 0.35|0.13, 0.56, 0.33, 0.06|
-
+|512|1|c|random|64.93, 67.87, 66.44, 0.36|1.26, 2.29, 1.75, 0.13|30.08, 33.08, 31.63, 0.37|0.04, 0.41, 0.18, 0.04|
+|512|1|c|random|||||
