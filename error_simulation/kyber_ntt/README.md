@@ -31,6 +31,50 @@ Twiddle factors are taken as Kyber standard
 The design was simulated for **10,000** Kyber NTT Run. The total NTT Barrett iteration for 10,000 Kyber is **1,024x10,000**
 Here how A is generated as 
 
+```python
+def kyber_xof_12bit(seed: bytes, N: int, Q):
+    """
+    Generate N uniformly random coefficients in [0, 3328]
+    using Kyber-style SHAKE128 XOF and 12-bit rejection sampling.
+    
+    Args:
+        seed (bytes): input seed (typically rho || i || j)
+        N (int): number of coefficients to generate
+    
+    Returns:
+        list[int]: N coefficients modulo q
+    """
+    shake = shake_128(seed)
+    coeffs = []
+
+    buffer = bytearray()
+    pos = 0
+
+    while len(coeffs) < N:
+        # Ensure enough bytes (3 bytes -> 2 x 12-bit values)
+        if pos + 3 > len(buffer):
+            buffer.extend(shake.digest(168))  # absorb more
+            pos = 0
+
+        # Extract two 12-bit values from 3 bytes
+        b0 = buffer[pos]
+        b1 = buffer[pos + 1]
+        b2 = buffer[pos + 2]
+        pos += 3
+
+        d0 = b0 | ((b1 & 0x0F) << 8)
+        d1 = (b1 >> 4) | (b2 << 4)
+
+        if d0 < Q:
+            coeffs.append(d0)
+            if len(coeffs) == N:
+                break
+        if d1 < Q:
+            coeffs.append(d1)
+
+    return coeffs
+```
+
 | Kyber NTT (12, 4, 3329) | # of loop| No reduction (%) | 1st reduction (%) | 2nd reduction (%) | Both reductions (%) |
 |------|------------------|-----------|-------------------|-------------------|---------------------|
 | Min  | |74.6419 | 0.2062 | 22.7865 | 0.0000 |
