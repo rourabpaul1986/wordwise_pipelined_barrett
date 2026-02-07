@@ -98,3 +98,9 @@ def kyber_xof_12bit(seed: bytes, N: int, Q):
 | Mean| | 90.1225 | 9.8775 | 0.0000 | 0.0000 |
 | Std|  | 0.8970  | 0.8970 | 0.0000 | 0.0000 |
 
+# Kyber NTT in Key Gen with fault injection
+
+|# faulty loop| faulty bit | place of fault| type of fault | No reduction (%) |1st reduction (%) |2nd reduction (%) | Both reductions (%) |
+|--|--|--|--|--|--|--|--|
+|1024|1|c|random|86.91|13.08|0.00|0.00|
+|1024|2|c|random|86.91|13.08|0.00|0.00|
