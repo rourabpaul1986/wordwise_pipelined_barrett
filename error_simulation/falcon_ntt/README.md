@@ -12,22 +12,8 @@ def generate_random_numbers(n, a, b):
 ```
 Twiddle factors are taken as Kyber standard
 
-|Falcon NTT (16, 4, 12289)|  # of loop |# of no reduction| # of 1st reduction| # of 2nd reduction | # of both reduction |
-|-----------------------|------------|-----------------|-------------------|--------------------|---------------------|
-|    min                |            |      74.446     |       0.282       |        22.721      |        0.000        |
-|    max                |   2        |      76.600     |       0.792       |        24.913      |        0.151        |
-|    mean               |            |      75.655     |       0.519       |        23.788      |        0.036        |
-|    sd                 |            |      0.282      |       0.071       |        0.278       |        0.019        |
 
-
-| Falcon NTT (12, 6, 3329) | # of loop | # of no reduction | # of 1st reduction | # of 2nd reduction | # of both reduction |
-|------------------------|-----------|-------------------|--------------------|--------------------|---------------------|
-| min                    |           | 73.168945         | 1.513672           | 20.922852          | 0.024414            |
-| max                    | 1024      | 76.757812         | 3.198242           | 24.536133          | 0.561523            |
-| mean                   |           | 74.786416         | 2.253311           | 22.724836          | 0.235437            |
-| sd                     |           | 0.419047          | 0.213354           | 0.417557           | 0.074523            |
-
-
+## For W-=4 and l=16
 
 |# faulty loop| faulty bit | place of fault| type of fault | No reduction (%) |1st reduction (%) |2nd reduction (%) | Both reductions (%) |
 |--|--|--|--|--|--|--|--|
