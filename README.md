@@ -50,13 +50,14 @@ Each stage is fully registered to maximize clock frequency.
 The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**.
 
 
-|Application |      l,w,q     | LUTs | FF | Slice | DSP | Power (mw) | CC | CP(ns)| 
-|------------|----------------|------|----|-------|-----|------------| ---|-------|
-|            | 12, 4, 3329    | 100  | 47 |   31  |  2  |  99       | 10  |  9.84 |
-|  Kyber     | 12, 6, 3329    | 109  | 47 |   41  |  2  |  99       | 5  |  9.02 |
-|            | 12, 12, 3329   | 31  | 13 |   17  |  5  |  100       | 4  |  6.99 |
-|   CKKS     | 32, 8, 1811939329| 234| 84 |  81  |  3  |  110       | 17  |  10.48 |
-
+|Application | application, l,w,q | LUTs | FF | Slice | DSP | Power (mw) | CC | CP(ns)| 
+|------------|--------------------|------|----|-------|-----|------------| ---|-------|
+|BMM@100MHz  | Kyber, 12, 4,3329  | 100  | 47 |   38  |  2  |  106       | 10  |  9.46 |
+|BMM@100MHz  | Kyber, 12, 6, 3329 | 113  | 47 |   43  |  2  |  108       | 5  |  9.32 |
+|BMM@83MHz   | Kyber, 12, 12, 3329| 31   | 26 |   13  |  5  |  106       | 2  |  11.67 |
+|BMM@100MHz   | CKKS, 32, 8, 1811939329 | 234  | 84 |  74   |  3  |  130   | 17  |  8.78 |
+|BMM@100MHz   | CKKS, 32, 16, 1811939329 | 184  | 44 |  76  |  4  |  131  | 5  |  8.71 |
+|BMM@100MHz   | CKKS, 32, 32, 1811939329 | 163  | 66 |  52  |  6  |  131  | 2  |  8.36 |
 
 > **Note:** Replace `XXX` with post-synthesis values from Vivado.
 
