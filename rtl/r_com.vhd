@@ -47,13 +47,13 @@ begin
        variable  T_reg : std_logic_vector(logq downto 0) := (others => '0');   
        variable R2 : std_logic_vector(logq downto 0) := (others => '0');
     begin
-    
+    if rising_edge(clk) then
          if rst = '1' then
             
             done_buf<='0';
-         elsif rising_edge(clk) then
+        
                
-                if start = '1' then
+                elsif start = '1' then
                    T_reg:=(others => '0');
                    done_buf<='1';
                   R2 :=  std_logic_vector(
