@@ -60,12 +60,12 @@ begin
      variable  Q1 : std_logic_vector((2*w + ((l/w-1 + l/w-1)*w))-1 downto 0) := (others => '0'); -- 24
      variable m : std_logic_vector(2*w-1 downto 0) := (others => '0'); -- Optimized bit-width
     begin
-    
+    if rising_edge(clk) then
          if rst = '1' then
             C_shift_buf<=(others => '0');
             done_buf<='0';
-         elsif rising_edge(clk) then
-                if start = '1' then
+         
+                elsif start = '1' then
                 m:=std_logic_vector(unsigned(a) * unsigned(b));
                  if(idx_a=0 and idx_b=0) then
                     Q1(2*w-1 downto 0):=std_logic_vector(to_unsigned((to_integer(unsigned(m))), 2*w));
