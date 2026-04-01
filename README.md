@@ -53,7 +53,7 @@ The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**
 |Application | application, l,w,q | LUTs | FF | Slice | DSP | Power (mw) | CC | CP(ns)| CLK(MHz) |
 |------------|--------------------|------|----|-------|-----|------------| ---|-------|-----|
 |BMM         | Kyber, 12, 4,3329  | 100  | 47 |   38  |  2  |  106       | 10  |  9.46 | 100 |
-|BMM +SRM    | Kyber, 12, 4,3329  | 100  | 47 |   38  |  2  |  106       | 10  |  9.46 | 100 |
+|BMM +SRM    | Kyber, 12, 4,3329  | 163  | 156|   83  |  2  |  107       | 10  |  9.33 | 100 |
 |BMM  | Kyber, 12, 6, 3329 | 113  | 47 |   43  |  2  |  108       | 5  |  9.32  |100  |
 |BMM   | Kyber, 12, 12, 3329| 31   | 26 |   13  |  5  |  106       | 2  |  11.67 |83|
 |BMM   | CKKS, 32, 8, 1811939329 | 234  | 84 |  74   |  3  |  130   | 17  |  8.78 |100|
