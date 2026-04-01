@@ -61,9 +61,9 @@ The design was synthesized using **Xilinx Vivado** targeting an **Artix-7 FPGA**
 |BMM   | CKKS, 32, 8, 1811939329 | 234  | 84 |  74   |  3  |  130   | 17  |  8.78 |100|
 |BMM+SRM   | CKKS, 32, 8, 1811939329 | 295  | 183 |  115   |  3  |  131   | 17  |  8.87 |100|
 |BMM   | CKKS, 32, 16, 1811939329 | 184  | 44 |  76  |  4  |  131  | 5  |  8.71 |100|
-|BMM   | CKKS, 32, 16, 1811939329 | 245  | 143 |  114 |  4  |  131  | 5  |  9.04 |100|
+|BMM+SRM  | CKKS, 32, 16, 1811939329 | 245  | 143 |  114 |  4  |  131  | 5  |  9.04 |100|
 |BMM   | CKKS, 32, 32, 1811939329 | 163  | 66 |  52  |  6  |  131  | 2  |  8.36 |100|
-
+|BMM+SRM   | CKKS, 32, 32, 1811939329 | 222  | 165 |  92  |  6  |  132  | 2  |  9.12 |100|
 > **Note:** Replace `XXX` with post-synthesis values from Vivado.
 
 | Parameter | LUTs | Slices |
