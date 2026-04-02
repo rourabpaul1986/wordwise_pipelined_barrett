@@ -80,7 +80,10 @@ begin
                 c<=q1;
                 end if;
          end if;
-     end process;       
+     end process;   
+--###############################################################################
+--#####c_shift (24 bit for kyber) is q and q1 (32 bit for kyber) is c as per python code q cheking condition############
+--###############################################################################
 c_shift<=c_shift_buf(C_shift_buf'length-1 downto C_shift_buf'length - k);
 --c<=c_var;
 --c:=q;
