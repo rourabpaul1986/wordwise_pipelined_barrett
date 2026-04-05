@@ -10,17 +10,19 @@ from multiprocessing import Pool, cpu_count
 # Configuration
 # ============================================================
 PYTHON = "python3"
-KYBER_SCRIPT = "ckks_a.py"   # adjust path if needed
+mode = "cxx"
+injection = "b"
+SCRIPT = "ckks_a.py"   # adjust path if needed
 
-RUNS = 10000                # repetitions per (f, fl)
-F_VALUES = range( 0, 1)         # f = 1..6
-FL_VALUES = [24576, 1024, 256]
+RUNS = 10000            # repetitions per (f, fl)
+F_VALUES = range( 1, 4)         # f = 1..6
+FL_VALUES = [ 24576, 1024, 512, 128]
 
-OUT_FILE = "results.txt"
-
+OUT_FILE_latex = f"results_latex_{mode}_{injection}.txt"
+OUT_FILE_git = f"results_git_{mode}_{injection}.txt"
 '''BASE_ARGS = [
-    "-m", "xqx",
-    "-i", "r",
+    "-m", mode",
+    "-i", injection,
     "-l", "16",
     "-w", "4",
     "-N", "512",
@@ -28,7 +30,7 @@ OUT_FILE = "results.txt"
 ]'''
 
 BASE_ARGS = [
-    "-m", "cxx",
+    "-m", "xqx",
     "-i", "r",
     "-l", "32",
     "-w", "8",
@@ -36,7 +38,14 @@ BASE_ARGS = [
     "-M", "1811939329",
 ]
 
-
+'''BASE_ARGS = [
+    "-m", mode,
+    "-i", injection,
+    "-l", "12",
+    "-w", "4",
+    "-N", "256",
+    "-M", "3329",
+]'''
 # ============================================================
 # Worker function
 # ============================================================
@@ -79,8 +88,9 @@ if __name__ == "__main__":
     nproc = cpu_count()
     print(f"\nUsing {nproc} CPU cores")
 
-    with open(OUT_FILE, "w") as fout:
-        fout.write("===== Kyber NTT Statistics =====\n\n")
+    with open(OUT_FILE_latex, "w") as fout_latex, open(OUT_FILE_git, "w") as fout_git:
+        fout_latex.write(f"===== {SCRIPT} NTT Statistics =====\n\n")
+        fout_git.write(f"===== {SCRIPT} NTT Statistics =====\n\n")
 
         for f in F_VALUES:
             for fl in FL_VALUES:
@@ -99,7 +109,7 @@ if __name__ == "__main__":
                 for _ in range(RUNS):
                     cmd = [
                         PYTHON,
-                        KYBER_SCRIPT,
+                        SCRIPT,
                         "-f", str(f),
                         "-fl", str(fl),
                     ] + BASE_ARGS
@@ -146,27 +156,34 @@ if __name__ == "__main__":
                 print(f"  Both loop : {bmin:.2f}, {bmax:.2f}, {bmean:.2f}, {bstd:.2f}")
 
                 # ---- write to file ----
-                mode = "c"          # or parse from BASE_ARGS if you want
-                inj  = "random"
+                #mode = "c"          # or parse from BASE_ARGS if you want
+                if(injection=="r"):
+                 inj  = "random"
+                elif(injection=="b"):
+                 inj="burst"
+                else:
+                 inj="unknown"
 
-                '''fout.write(
+                fout_git.write(
                   f"|{fl}|{f}|{mode}|{inj}|"
-                  f"{qmin:.2f}, {qmax:.2f}, {qmean:.2f}, {qstd:.2f}|"
+                  #f"{qmin:.2f}, {qmax:.2f}, {qmean:.2f}, {qstd:.2f}|"
                   f"{nmin:.2f}, {nmax:.2f}, {nmean:.2f}, {nstd:.2f}|"
                   f"{l1min:.2f}, {l1max:.2f}, {l1mean:.2f}, {l1std:.2f}|"
                   f"{l2min:.2f}, {l2max:.2f}, {l2mean:.2f}, {l2std:.2f}|"
                   f"{bmin:.2f}, {bmax:.2f}, {bmean:.2f}, {bstd:.2f}|\n"
-                )'''
-
-                fout.write(
-                  f"|{fl}|{f}|{mode}|{inj}|"
-                  f"{qmin:.2f}--{qmax:.2f} &"
-                  f"{nmin:.2f}--{nmax:.2f} &"
-                  f"{l1min:.2f}--{l1max:.2f}&"
-                  f"{l2min:.2f}--{l2max:.2f}"
-                  f"{bmin:.2f}, {bmax:.2f}, {bmean:.2f}, {bstd:.2f}|\n"
                 )
 
-        fout.write("\n===== END =====\n")
+                fout_latex.write(
+                  f"{fl}&{f}&"
+                  #f"{qmin:.2f}--{qmax:.2f} &"
+                  f"{nmin:.2f}--{nmax:.2f} &"
+                  f"{l1min:.2f}--{l1max:.2f}&"
+                  f"{l2min:.2f}--{l2max:.2f}&"
+                  f"{bmin:.2f}, {bmax:.2f}\n"
+                )
 
-    print(f"\nAll results saved to {OUT_FILE}")
+        fout_latex.write("\n===== END =====\n")
+        fout_git.write("\n===== END =====\n")
+
+    print(f"\nAll results saved to {OUT_FILE_latex}")
+    print(f"\nAll results saved to {OUT_FILE_git}")
