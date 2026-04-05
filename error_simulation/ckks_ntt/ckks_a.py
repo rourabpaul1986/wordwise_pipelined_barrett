@@ -123,7 +123,7 @@ def barrett_multiplication_wordwise(a, b, n, l, w, f,  e0, e1, e2, e12, q_fault,
             elif mode[0]=="x":
                  c=c
             elif mode[0]!="x" and mode[0]!="c":
-                sys.exit(f"{mode[0]} is wrong fault mode, command should be -m pxx")
+                sys.exit(f"{mode[0]} is wrong fault mode, command should be -m cxx")
            
             
             #print(f"hamming_distance:{hamming_distance(c, cf)}")
