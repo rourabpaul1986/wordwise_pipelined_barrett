@@ -28,5 +28,5 @@ Twiddle factors are taken as CKKS standard
 
 |# faulty loop| faulty bit | place of fault| type of fault | No reduction (%) |1st reduction (%) |2nd reduction (%) | Both reductions (%) |
 |--|--|--|--|--|--|--|--|
-|x|0|xxr|burst|80.06, 83.81, 81.39, 0.46|0.07, 0.11, 0.09, 0.01|16.11, 19.85, 18.52, 0.46|0.00, 0.01, 0.00, 0.00|
+|x|0|xxr|x|80.06, 83.81, 81.39, 0.46|0.07, 0.11, 0.09, 0.01|16.11, 19.85, 18.52, 0.46|0.00, 0.01, 0.00, 0.00|
 
