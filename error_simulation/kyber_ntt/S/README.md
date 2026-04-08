@@ -27,3 +27,6 @@ def gen_s_vector(sigma, k, eta, N):
         s.append(cbd_eta(buf, eta, N))
     return s
 ```
+
+|# faulty loop| faulty bit | place of fault| type of fault | No reduction (%) |1st reduction (%) |2nd reduction (%) | Both reductions (%) |
+|--|--|--|--|--|--|--|--|
