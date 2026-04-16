@@ -1,7 +1,7 @@
 
 # CKKS NTT in S generation
 ## Generation of S with Python random library
-The design was simulated for **10,000** falcon-512 NTT Run. The total NTT Barrett iteration for 10,000 CKKS is **12x2048x10,000**
+The design was simulated for **10,000** CKKS NTT Run. The total NTT Barrett iteration for 10,000 CKKS is **16x24576x10,000**
 Here how A is generated as 
 
 ```python
