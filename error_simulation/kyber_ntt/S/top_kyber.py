@@ -10,33 +10,17 @@ from multiprocessing import Pool, cpu_count
 # Configuration
 # ============================================================
 PYTHON = "python3"
-mode = "cxx"
-injection = "r"
+mode = "xxr"
+injection = "b"
 SCRIPT = "kyber_s.py"   # adjust path if needed
 
-RUNS = 10000            # repetitions per (f, fl)
-F_VALUES = range( 0, 4)         # f = 1..6
-FL_VALUES = [1024, 512, 128, 64]
+RUNS = 10000          # repetitions per (f, fl)
+F_VALUES = range( 11, 12)         # f = 1..6
+FL_VALUES = [64]
 
-OUT_FILE_latex = f"results_latex_{mode}_{injection}.txt"
-OUT_FILE_git = f"results_git_{mode}_{injection}.txt"
-'''BASE_ARGS = [
-    "-m", mode",
-    "-i", injection,
-    "-l", "16",
-    "-w", "4",
-    "-N", "512",
-    "-M", "12289",
-]'''
+OUT_FILE_latex = f"{SCRIPT[0:-3]}_latex_{mode}_{injection}.txt"
+OUT_FILE_git = f"{SCRIPT[0:-3]}_git_{mode}_{injection}.txt"
 
-'''BASE_ARGS = [
-    "-m", "xqx",
-    "-i", "r",
-    "-l", "32",
-    "-w", "8",
-    "-N", "4096",
-    "-M", "1811939329",
-]'''
 
 BASE_ARGS = [
     "-m", mode,
@@ -148,13 +132,21 @@ if __name__ == "__main__":
                 l2min, l2max, l2mean, l2std = compute_stats(loop2)
                 bmin, bmax, bmean, bstd = compute_stats(both_loop)
                 qmin, qmax, qmean, qstd = compute_stats(qfault_list)
+                count0 = sum(1 for x in no_loop if x < 77.66 or x > 80.41)
+                count1 = sum(1 for y in loop1 if y < 0.14 or y > 0.61)
+                count2 = sum(1 for z in loop2 if z < 19.18 or z > 21.91)
+                
+                count = 0
 
+                for x, y, z in zip(no_loop, loop1, loop2):
+                   if (x < 77.66 or x > 80.41 or y < 0.14 or y > 0.61 or z < 19.18 or z > 21.91):
+                      count += 1
                 # ---- print ----
                 print(f"  No loop   : {nmin:.2f}, {nmax:.2f}, {nmean:.2f}, {nstd:.2f}")
                 print(f"  1st loop  : {l1min:.2f}, {l1max:.2f}, {l1mean:.2f}, {l1std:.2f}")
                 print(f"  2nd loop  : {l2min:.2f}, {l2max:.2f}, {l2mean:.2f}, {l2std:.2f}")
                 print(f"  Both loop : {bmin:.2f}, {bmax:.2f}, {bmean:.2f}, {bstd:.2f}")
-
+                print(f"count:{count}, ")
                 # ---- write to file ----
                 #mode = "c"          # or parse from BASE_ARGS if you want
                 if(injection=="r"):
@@ -184,6 +176,6 @@ if __name__ == "__main__":
 
         fout_latex.write("\n===== END =====\n")
         fout_git.write("\n===== END =====\n")
-
+    
     print(f"\nAll results saved to {OUT_FILE_latex}")
     print(f"\nAll results saved to {OUT_FILE_git}")
