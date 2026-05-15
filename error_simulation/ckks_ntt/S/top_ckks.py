@@ -5,18 +5,24 @@ import numpy as np
 import sys
 import time
 from multiprocessing import Pool, cpu_count
-
+import argparse
 # ============================================================
 # Configuration
 # ============================================================
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--injection", type=str,  
+                        help="mode of fault (integer value)")
+args = parser.parse_args()
+
+injection = args.injection
 PYTHON = "python3"
 mode = "xxr" #cqr
-injection = "b"
+#injection = "r"
 SCRIPT = "ckks_s.py"   # adjust path if needed
 
 RUNS = 10000            # repetitions per (f, fl)
-F_VALUES = range( 0, 1)         # f = 1..6
-FL_VALUES = [24576, 1024]
+F_VALUES = range( 11, 12)         # f = 1..6
+FL_VALUES = [128]
 
 OUT_FILE_latex = f"results_latex_{mode}_{injection}.txt"
 OUT_FILE_git = f"results_git_{mode}_{injection}.txt"
@@ -86,7 +92,7 @@ def compute_stats(arr):
 if __name__ == "__main__":
 
     nproc = cpu_count()
-    print(f"\nUsing {nproc} CPU cores")
+    print(f"\nUsing {nproc} CPU cores fault injection mode:{injection}")
 
     with open(OUT_FILE_latex, "w") as fout_latex, open(OUT_FILE_git, "w") as fout_git:
         fout_latex.write(f"===== {SCRIPT} NTT Statistics =====\n\n")
@@ -148,13 +154,17 @@ if __name__ == "__main__":
                 l2min, l2max, l2mean, l2std = compute_stats(loop2)
                 bmin, bmax, bmean, bstd = compute_stats(both_loop)
                 qmin, qmax, qmean, qstd = compute_stats(qfault_list)
+                count = 0
 
+                for x, y, z in zip(no_loop, loop1, loop2):
+                   if (x < 80.06 or x > 83.81 or y < 0.07 or y > 0.11 or z < 16.11 or z > 19.85):
+                      count += 1
                 # ---- print ----
                 print(f"  No loop   : {nmin:.2f}, {nmax:.2f}, {nmean:.2f}, {nstd:.2f}")
                 print(f"  1st loop  : {l1min:.2f}, {l1max:.2f}, {l1mean:.2f}, {l1std:.2f}")
                 print(f"  2nd loop  : {l2min:.2f}, {l2max:.2f}, {l2mean:.2f}, {l2std:.2f}")
                 print(f"  Both loop : {bmin:.2f}, {bmax:.2f}, {bmean:.2f}, {bstd:.2f}")
-
+                print(f"count:{count}, ")
                 # ---- write to file ----
                 #mode = "c"          # or parse from BASE_ARGS if you want
                 if(injection=="r"):
