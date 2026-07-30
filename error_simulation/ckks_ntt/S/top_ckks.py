@@ -11,7 +11,7 @@ import argparse
 # ============================================================
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--injection", type=str,  
-                        help="mode of fault (integer value)")
+                        help="fault injection type: random/burst")
 args = parser.parse_args()
 
 injection = args.injection
