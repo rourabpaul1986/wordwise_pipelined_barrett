@@ -26,7 +26,25 @@ To run the ckks_s.py
 ```
 python3 ckks_s.py -f 0 -fl 0 -i r -m cxx -l 32 -w 8 -N 4096 -M 1811939329
 ```
+## Command-Line Options
 
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `-f`, `--fault` | `int` | `1` | Number of faulty bits to inject |
+| `-fl`, `--faulty_loop` | `int` | `4096` | Number of NTT loops affected by the fault |
+| `-i`, `--injection` | `str` | `r` | Fault injection type (`random` or `burst`) |
+| `-m`, `--mode` | `str` | `xxx` | Fault injected operation or module |
+| `-v`, `--verbose` | flag | `False` | Enable verbose output |
+| `-l`, `--length` | `int` | `32` | Partition or chunk length |
+| `-w`, `--wordsize` | `int` | `8` | Word size in bits |
+| `-N`, `--degree` | `int` | `4096` | Polynomial degree |
+| `-M`, `--mod` | `int` | `1811939329` | Modulus value |
+
+### Example
+
+```bash
+python ckks/ckks_s.py -f 4 -fl 1024 -i burst -m ntt -l 64 -w 16 -N 4096 -M 1811939329 -v
+```
 ## For W-=8 and l=32
 
 |# faulty loop| faulty bit | place of fault| type of fault | No reduction (%) |1st reduction (%) |2nd reduction (%) | Both reductions (%) |
