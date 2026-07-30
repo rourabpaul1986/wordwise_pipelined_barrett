@@ -23,7 +23,7 @@ def generate_sparse_s(N, q,  h=64):
 ```
 Twiddle factors are taken as CKKS standard
 ## To run the ckks_s.py
-```
+```bash
 python3 ckks_s.py -f 0 -fl 0 -i r -m cxx -l 32 -w 8 -N 4096 -M 1811939329
 ```
 ## Command-Line Options
@@ -40,10 +40,10 @@ python3 ckks_s.py -f 0 -fl 0 -i r -m cxx -l 32 -w 8 -N 4096 -M 1811939329
 | `-N`, `--degree` | `int` | `4096` | Polynomial degree |
 | `-M`, `--mod` | `int` | `1811939329` | Modulus value |
 
-### Example
+## To run the top_ckks.py for large sample size
 
 ```bash
-python ckks/ckks_s.py -f 4 -fl 1024 -i burst -m ntt -l 64 -w 16 -N 4096 -M 1811939329 -v
+python3 top_ckks.py -i r
 ```
 ## For W-=8 and l=32
 
