@@ -22,7 +22,10 @@ def generate_sparse_s(N, q,  h=64):
 
 ```
 Twiddle factors are taken as CKKS standard
-
+To run the ckks_s.py
+```
+python3 ckks_s.py -f 0 -fl 0 -i r -m cxx -l 32 -w 8 -N 4096 -M 1811939329
+```
 
 ## For W-=8 and l=32
 
