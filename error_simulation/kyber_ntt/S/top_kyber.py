@@ -18,6 +18,13 @@ RUNS = 10000          # repetitions per (f, fl)
 F_VALUES = range( 11, 12)         # f = 1..6
 FL_VALUES = [64]
 
+
+'''Here, RUNS = 10000 specifies the number of Kyber key-generation operations performed during the error simulation. Each key-generation operation involves 1,024 NTT iterations, resulting in a total of 10,000 x 1,024 = 10,240,000 NTT iterations.
+F_VALUES = range(0, 1) specifies that the simulation considers zero injected faults only, since the range excludes its upper bound. Finally, FL_VALUES = [0] specifies a fault-length parameter of zero, consistent with the fault-free simulation.
+Therefore, I suggest verifying whether these parameters were correctly configured when reproducing the results. In particular, the fault-free baseline should be evaluated with zero injected faults to ensure a fair comparison with our reported results.'''
+
+
+
 OUT_FILE_latex = f"{SCRIPT[0:-3]}_latex_{mode}_{injection}.txt"
 OUT_FILE_git = f"{SCRIPT[0:-3]}_git_{mode}_{injection}.txt"
 
